@@ -1,0 +1,23 @@
+<main class="projects-show">
+  <h1><%= Project.model_name.human %> #<%= @project.id %></h1>
+
+  <dl>
+    <dt><%= Project.human_attribute_name(:name) %></dt>
+    <dd><%= @project.name %></dd>
+    <dt><%= Project.human_attribute_name(:description) %></dt>
+    <dd><%= @project.description %></dd>
+    <dt><%= Project.human_attribute_name(:url) %></dt>
+    <dd><%= link_to @project.url, "//#{@project.url}", target: :_blank %></dd>
+    <dt><%= Client.model_name.human %></dt>
+    <dd><%= link_to @project.client.display_name, @project.client if @project.client %></dd>
+    <dt><%= Project.human_attribute_name(:created_at) %></dt>
+    <dd><%= l @project.created_at %></dd>
+    <dt><%= Project.human_attribute_name(:updated_at) %></dt>
+    <dd><%= l @project.updated_at %></dd>
+  </dl>
+
+  <div class="actions">
+    <%= link_to t(:edit), edit_project_path(@project) %>
+    <%= link_to t(:destroy), @project, method: :delete, data: { confirm: t(:confirm) } %>
+  </div>
+</main>

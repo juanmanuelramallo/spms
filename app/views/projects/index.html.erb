@@ -1,0 +1,32 @@
+<main class="projects-index">
+  <h1><%= Project.model_name.human(count: 2) %></h1>
+
+  <% if @projects.empty? %>
+    <div class="alert">
+      <%= t :empty %>
+    </div>
+  <% else %>
+    <table>
+      <thead>
+        <tr>
+          <th><%= Project.human_attribute_name(:name) %></th>
+          <th><%= Project.human_attribute_name(:updated_at) %></th>
+          <th><%= Client.model_name.human %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @projects.each do |project| %>
+          <tr>
+            <td><%= project.name %></td>
+            <td><%= l project.updated_at %></td>
+            <td><%= project.client.to_s %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+
+  <div class="actions">
+    <%= link_to t(:new), [:new, :project] %>
+  </div>
+</main>

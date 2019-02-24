@@ -1,0 +1,8 @@
+<%= simple_form_for project do |f| %>
+  <%= f.input :name %>
+  <%= f.input :description %>
+  <%= f.input :url %>
+  <%= f.input :client, collection: Client.all %>
+
+  <%= f.submit %>
+<% end %>
