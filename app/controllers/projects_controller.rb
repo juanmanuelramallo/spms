@@ -9,7 +9,7 @@ class ProjectsController < ApplicationController
   end
 
   def new
-    @project = Project.new
+    @project = Project.new client_id: params[:client_id]
   end
 
   def create
@@ -47,6 +47,6 @@ class ProjectsController < ApplicationController
   end
 
   def project_params
-    params.require(:project).permit(:name, :description, :url)
+    params.require(:project).permit(:name, :description, :url, :client_id)
   end
 end

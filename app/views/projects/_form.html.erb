@@ -2,7 +2,7 @@
   <%= f.input :name %>
   <%= f.input :description %>
   <%= f.input :url %>
-  <%= f.input :client, collection: Client.all %>
+  <%= f.input :client_id, collection: Client.all.map { |client| [client.display_name, client.id] } %>
 
   <%= f.submit %>
 <% end %>

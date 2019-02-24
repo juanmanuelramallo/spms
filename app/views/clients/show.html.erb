@@ -1,0 +1,39 @@
+<main class="clients-show">
+  <h1><%= Client.model_name.human %> #<%= @client.id %></h1>
+
+  <dl>
+    <dt><%= Client.human_attribute_name(:first_name) %></dt>
+    <dd><%= @client.first_name %></dd>
+    <dt><%= Client.human_attribute_name(:last_name) %></dt>
+    <dd><%= @client.last_name %></dd>
+    <dt><%= Client.human_attribute_name(:business_name) %></dt>
+    <dd><%= @client.business_name %></dd>
+    <dt><%= Client.human_attribute_name(:phone_number) %></dt>
+    <dd><%= @client.phone_number %></dd>
+    <dt><%= Client.human_attribute_name(:email) %></dt>
+    <dd><%= mail_to @client.email %></dd>
+    <dt><%= Client.human_attribute_name(:created_at) %></dt>
+    <dd><%= l @client.created_at %></dd>
+    <dt><%= Client.human_attribute_name(:updated_at) %></dt>
+    <dd><%= l @client.updated_at %></dd>
+  </dl>
+
+  <section>
+    <h2><%= Project.model_name.human.pluralize %></h2>
+    <ul>
+      <% @client.projects.each do |project| %>
+        <li><%= project.name %> <%= link_to t(:show), project %></li>
+      <% end %>
+    </ul>
+    <div class="actions">
+      <%= link_to t(:new_project), [:new, :project, params: { client_id: @client.id }] %>
+    </div>
+  </section>
+
+  <br>
+
+  <div class="actions">
+    <%= link_to t(:edit), edit_client_path(@client) %>
+    <%= link_to t(:destroy), @client, method: :delete, data: { confirm: t(:confirm) } %>
+  </div>
+</main>

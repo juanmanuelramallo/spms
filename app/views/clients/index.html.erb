@@ -1,0 +1,42 @@
+<main class="clients-index">
+  <h1><%= Client.model_name.human(count: 2) %></h1>
+
+  <% if @clients.empty? %>
+    <div class="alert">
+      <%= t :empty %>
+    </div>
+  <% else %>
+    <table>
+      <thead>
+        <tr>
+          <th><%= Client.human_attribute_name(:first_name) %></th>
+          <th><%= Client.human_attribute_name(:last_name) %></th>
+          <th><%= Client.human_attribute_name(:business_name) %></th>
+          <th><%= Client.human_attribute_name(:email) %></th>
+          <th><%= Client.human_attribute_name(:updated_at) %></th>
+          <th><%= t :actions %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @clients.each do |client| %>
+          <tr>
+            <td><%= client.first_name %></td>
+            <td><%= client.last_name %></td>
+            <td><%= client.business_name %></td>
+            <td><%= mail_to client.email %></td>
+            <td><%= l client.updated_at %></td>
+            <td>
+              <%= link_to t(:show), client %>
+              <%= link_to t(:edit), [:edit, client] %>
+              <%= link_to t(:destroy), client, method: :delete, data: { confirm: t(:confirm) } %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+
+  <div class="actions">
+    <%= link_to t(:new), [:new, :client] %>
+  </div>
+</main>

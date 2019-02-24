@@ -6,7 +6,7 @@ class Client < ApplicationRecord
   has_many :projects, dependent: :destroy
 
   def display_name
-    return business_name if business_name
+    return business_name unless business_name.empty?
     [first_name, last_name].compact.join(" ")
   end
 end

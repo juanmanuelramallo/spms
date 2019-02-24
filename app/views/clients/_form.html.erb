@@ -1,0 +1,9 @@
+<%= simple_form_for client do |f| %>
+  <%= f.input :first_name %>
+  <%= f.input :last_name %>
+  <%= f.input :business_name %>
+  <%= f.input :phone_number, as: :tel %>
+  <%= f.input :email, as: :email %>
+
+  <%= f.submit %>
+<% end %>
